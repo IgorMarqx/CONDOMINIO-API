@@ -13,4 +13,8 @@ class WallLike extends Model
 
     public $table = 'walllikes';
 
+    protected $fillable = [
+        'id_wall',
+        'id_user'
+    ];
 }
