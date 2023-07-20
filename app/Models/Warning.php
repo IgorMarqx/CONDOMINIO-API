@@ -11,4 +11,11 @@ class Warning extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'id_unit',
+        'title',
+        'status',
+        'created_at',
+        'photos',
+    ];
 }
