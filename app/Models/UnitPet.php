@@ -17,4 +17,10 @@ class UnitPet extends Model
 
     public $table = 'unitpets';
 
+    protected $fillable = [
+        'id_unit',
+        'name',
+        'race',
+    ];
+
 }
