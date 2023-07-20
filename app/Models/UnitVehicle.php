@@ -17,4 +17,11 @@ class UnitVehicle extends Model
 
     public $table = 'unitvehicles';
 
+    protected $fillable = [
+        'id_unit',
+        'title',
+        'color',
+        'plate',
+    ];
+
 }
