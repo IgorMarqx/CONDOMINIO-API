@@ -13,4 +13,12 @@ class FoundAndLost extends Model
 
     public $table = 'foundandlost';
 
+    protected $fillable = [
+        'status',
+        'photo',
+        'description',
+        'where',
+        'created_at',
+    ];
+
 }
