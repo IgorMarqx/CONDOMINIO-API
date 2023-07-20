@@ -16,4 +16,10 @@ class UnitPeople extends Model
     public $timestamps = false;
 
     public $table = 'unitpeoples';
+
+    protected $fillable = [
+        'id_unit',
+        'name',
+        'birthdate',
+    ];
 }
