@@ -11,6 +11,6 @@ class Area extends Model
 
     public $timestamps = false;
 
-    public $table = 'unitpets';
+    public $table = 'areas';
 
 }
