@@ -50,9 +50,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/unit/{id}/addvehicle', [UnitController::class, 'addvehicle']);
     Route::post('/unit/{id}/addpet', [UnitController::class, 'addpet']);
 
-    Route::delete('/unit/{id}/removeperson', [UnitController::class, 'removeperson']);
-    Route::delete('/unit/{id}/removevehicle', [UnitController::class, 'removevehicle']);
-    Route::delete('/unit/{id}/removepet', [UnitController::class, 'removepet']);
+    Route::delete('/unit/{id}/removeperson', [UnitController::class, 'removePerson']);
+    Route::delete('/unit/{id}/removevehicle', [UnitController::class, 'removeVehicle']);
+    Route::delete('/unit/{id}/removepet', [UnitController::class, 'removePet']);
 
     // Reservas
     Route::get('/reservations', [ReservationController::class, 'getReservations']);
