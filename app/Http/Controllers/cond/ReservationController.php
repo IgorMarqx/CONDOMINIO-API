@@ -154,4 +154,17 @@ class ReservationController extends Controller
 
         return $array;
     }
+
+    public function getDisabledDates($id)
+    {
+        $array = ['error' => '', 'list' => ''];
+
+        // Dias desabilitados
+        $disabledDays = AreaDisabledDay::where('id_area', $id)->get();
+
+        foreach ($disabledDays as $disableDay) {
+            $array['list'] = $disableDay['day'];
+        }
+        return $array;
+    }
 }
