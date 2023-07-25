@@ -157,7 +157,7 @@ class ReservationController extends Controller
 
     public function getDisabledDates($id)
     {
-        $array = ['error' => '', 'list' => ''];
+        $array = ['error' => '', 'list' => []];
 
         $area = Area::find($id);
 
@@ -195,6 +195,60 @@ class ReservationController extends Controller
             return $array;
         }
 
+
+        return $array;
+    }
+
+    public function getTimes($id, Request $request)
+    {
+        $array = ['error' => '', 'list' => []];
+
+        $validator = Validator::make($request->all(), [
+            'date' => ['required', 'date_format:Y-m-d'],
+        ]);
+
+        if (!$validator->fails()) {
+            $date = $request->input('date');
+            $area = Area::find($id);
+
+            if ($area) {
+                $can = true;
+
+                // Verifica se é dia disabled
+                $disabledDay = AreaDisabledDay::where('id_area', $id)
+                    ->where('day', $date)
+                    ->count();
+
+                if ($disabledDay > 0) {
+                    $can = false;
+                }
+
+                // Verifica se é dia permitido
+                $allowedDays = explode(',', $area['days']);
+                $weekDay = date('w', strtotime($date));
+
+                if (!in_array($weekDay, $allowedDays)) {
+                    $can = false;
+                }
+
+                if ($can) {
+                    $start = strtotime($area['start_time']);
+                    $end = strtotime($area['end_time']);
+
+                    $times = [];
+
+                    for ($lastTime = $start; $lastTime < $end; $lastTime = strtotime('+1 hour', $lastTime)) {
+                        $times[] = $lastTime;
+                    }
+                }
+            } else {
+                $array['error'] = 'Área inexistente.';
+                return $array;
+            }
+        } else {
+            $array['error'] = $validator->errors()->first();
+            return $array;
+        }
 
         return $array;
     }
